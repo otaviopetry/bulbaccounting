@@ -1,0 +1,74 @@
+{
+  "name": "bulbaaccounting-api",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/bulbaaccounting-api/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "defaultConfiguration": "production",
+      "options": {
+        "target": "node",
+        "compiler": "tsc",
+        "outputPath": "dist/apps/bulbaaccounting-api",
+        "main": "apps/bulbaaccounting-api/src/main.ts",
+        "tsConfig": "apps/bulbaaccounting-api/tsconfig.app.json",
+        "assets": [
+          "apps/bulbaaccounting-api/src/assets"
+        ],
+        "isolatedConfig": true,
+        "webpackConfig": "apps/bulbaaccounting-api/webpack.config.js"
+      },
+      "configurations": {
+        "development": {},
+        "production": {}
+      }
+    },
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "bulbaaccounting-api:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "bulbaaccounting-api:build:development"
+        },
+        "production": {
+          "buildTarget": "bulbaaccounting-api:build:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": [
+        "{options.outputFile}"
+      ],
+      "options": {
+        "lintFilePatterns": [
+          "apps/bulbaaccounting-api/**/*.ts"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
+      "options": {
+        "jestConfig": "apps/bulbaaccounting-api/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    }
+  },
+  "tags": []
+}
