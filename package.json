@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "front": "nx run bulbaaccounting-front:serve --configuration=development"
+    "front": "nx run bulbaaccounting-front:serve --configuration=development",
+    "server": "nx run bulbaaccounting-api:serve --configuration=development"
   },
   "private": true,
   "dependencies": {

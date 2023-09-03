@@ -3,19 +3,19 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule  } from '@angular/common/http';
 
-import { AppComponent } from './app.component';
-import { appRoutes } from './app.routes';
+import { AppComponent } from '@bulbaccounting-front/app/app.component';
+import { AppRoutingModule, appRoutes } from './app.routing';
 import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
+  declarations: [
+    AppComponent
+  ],
   imports: [
     BrowserModule,
     CommonModule,
-    RouterModule.forRoot(appRoutes),
     HttpClientModule,
-  ],
-  providers: [
-    RouterModule
+    AppRoutingModule,
   ],
   bootstrap: [AppComponent]
 })
