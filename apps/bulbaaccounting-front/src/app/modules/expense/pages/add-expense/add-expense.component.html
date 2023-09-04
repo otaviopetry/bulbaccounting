@@ -1,62 +1,111 @@
 <div class="add-expense-form">
-  <form [formGroup]="paymentForm" (ngSubmit)="onSubmit()">
-    <fieldset>
-      <legend>Expense Details</legend>
-      <div>
-        <label for="name">Name:</label>
-        <input type="text" id="name" formControlName="name" placeholder="Name">
-      </div>
-      <div>
-        <label for="date">Date:</label>
-        <input type="date" id="date" formControlName="date" placeholder="Date">
-      </div>
-      <div>
-        <label for="totalAmount">Total Amount:</label>
-        <input type="number" id="totalAmount" formControlName="totalAmount" placeholder="Total Amount">
-      </div>
-      <div>
-        <label for="paymentMethod">Payment Method:</label>
-        <select id="paymentMethod" formControlName="paymentMethod">
-          <option value="0" disabled selected>Selecione uma</option>
-          <option value="debit">Debit</option>
-          <option value="credit">Credit</option>
-        </select>
-      </div>
-      <div>
-        <label for="paymentType">Payment Type:</label>
-        <select id="paymentType" formControlName="paymentType">
-          <option value="0" disabled selected>Selecione uma</option>
-          <option value="onePayment">One Payment</option>
-          <option value="installments">Installments</option>
-        </select>
-      </div>
-      <div>
-        <label for="paymentSource">Payment Source:</label>
-        <input type="text" id="paymentSource" formControlName="paymentSource" placeholder="Payment Source">
-      </div>
-    </fieldset>
-
-    <fieldset>
-      <legend>Additional Fields</legend>
-      <div formArrayName="additionalFields" *ngFor="let field of additionalFields.controls; let i = index">
-        <div [formGroupName]="i">
-          <div>
-            <label for="additionalFieldName">Name:</label>
-            <input type="text" id="additionalFieldName" formControlName="name" placeholder="Name">
-          </div>
-          <div>
-            <label for="additionalFieldValue">Value:</label>
-            <input type="number" id="additionalFieldValue" formControlName="value" placeholder="Value">
-          </div>
-          <div>
-            <label for="additionalFieldCategory">Category:</label>
-            <input type="text" id="additionalFieldCategory" formControlName="category" placeholder="Category">
-          </div>
+    <form [formGroup]="paymentForm" (ngSubmit)="onSubmit()">
+        <h2 class="page-title">Adicionar despesa</h2>
+        <div>
+            <label for="name">Nome</label>
+            <input
+                type="text"
+                id="name"
+                formControlName="name"
+                placeholder="Ocasião da despesa"
+            />
         </div>
-      </div>
-      <button type="button" (click)="addAdditionalField()">Add Additional Field</button>
-    </fieldset>
-
-    <button type="submit">Submit</button>
-  </form>
+        <div>
+            <label for="date">Data</label>
+            <input
+                type="date"
+                id="date"
+                formControlName="date"
+                placeholder="Date"
+            />
+        </div>
+        <div>
+            <label for="totalAmount">Total</label>
+            <input
+                type="number"
+                id="totalAmount"
+                formControlName="totalAmount"
+                placeholder="Valor total da despesa"
+            />
+        </div>
+        <div>
+            <label for="paymentMethod">Método de Pagamento</label>
+            <select id="paymentMethod" formControlName="paymentMethod">
+                <option value="0" disabled selected>Selecione um</option>
+                <option value="debit">Debit</option>
+                <option value="credit">Credit</option>
+            </select>
+        </div>
+        <div>
+            <label for="paymentType">Tipo de Pagamento</label>
+            <select id="paymentType" formControlName="paymentType">
+                <option value="0" disabled selected>Selecione um</option>
+                <option value="onePayment">À vista</option>
+                <option value="installments">Parcelado</option>
+            </select>
+        </div>
+        <div>
+            <label for="installments">Parcelas</label>
+            <input
+                type="number"
+                id="installments"
+                formControlName="installments"
+                placeholder="Quantidade de parcelas"
+            />
+        </div>
+        <div>
+            <label for="paymentSource">Origem do pagamento</label>
+            <input
+                type="text"
+                id="paymentSource"
+                formControlName="paymentSource"
+                placeholder="Qual cartão/conta?"
+            />
+        </div>
+        <div class="add-expense-form__items">
+            <h3>Items</h3>
+            <div
+                formArrayName="additionalFields"
+                *ngFor="let field of additionalFields.controls; let i = index"
+            >
+                <div [formGroupName]="i" class="add-expense-form__items__item">
+                    <div>
+                        <input
+                            type="text"
+                            id="{{ 'additionalFieldName_' + i }}"
+                            formControlName="name"
+                            placeholder="Nome"
+                        />
+                    </div>
+                    <div>
+                        <input
+                            type="number"
+                            id="{{ 'additionalFieldValue_' + i }}"
+                            formControlName="value"
+                            placeholder="Valor"
+                        />
+                    </div>
+                    <div>
+                        <input
+                            type="text"
+                            id="{{ 'additionalFieldCategory_' + i }}"
+                            formControlName="category"
+                            placeholder="Categoria"
+                        />
+                    </div>
+                </div>
+            </div>
+            <button
+                type="button"
+                (click)="addAdditionalField()"
+                class="add-expense-form__items__add-item"
+                aria-label="Adicionar item"
+            >
+                +
+            </button>
+        </div>
+        <button class="add-expense-form__submit" type="submit">
+            Adicionar despesa
+        </button>
+    </form>
 </div>

@@ -2,42 +2,45 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'bulba-add-expense',
-  templateUrl: './add-expense.component.html',
-  styleUrls: ['./add-expense.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'bulba-add-expense',
+    templateUrl: './add-expense.component.html',
+    styleUrls: ['./add-expense.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddExpenseComponent implements OnInit {
-  public paymentForm: FormGroup = this.fb.group({});
+    public paymentForm: FormGroup = this.fb.group({});
 
-  constructor(private fb: FormBuilder) { }
+    constructor(private fb: FormBuilder) {}
 
-  ngOnInit() {
-    this.paymentForm = this.fb.group({
-      name: ['', Validators.required],
-      date: ['', Validators.required],
-      totalAmount: ['', Validators.required],
-      paymentMethod: ['0', Validators.required],
-      paymentType: ['0', Validators.required],
-      paymentSource: ['', Validators.required],
-      additionalFields: this.fb.array([])
-    });
-    this.addAdditionalField();
-  }
+    ngOnInit() {
+        this.paymentForm = this.fb.group({
+            name: ['', Validators.required],
+            date: ['', Validators.required],
+            totalAmount: [0.0, Validators.required],
+            paymentMethod: ['0', Validators.required],
+            paymentType: ['0', Validators.required],
+            installments: [1],
+            paymentSource: ['', Validators.required],
+            additionalFields: this.fb.array([]),
+        });
+        this.addAdditionalField();
+    }
 
-  get additionalFields() {
-    return this.paymentForm.get('additionalFields') as FormArray;
-  }
+    get additionalFields() {
+        return this.paymentForm.get('additionalFields') as FormArray;
+    }
 
-  addAdditionalField() {
-    this.additionalFields.push(this.fb.group({
-      name: ['', Validators.required],
-      value: ['', Validators.required],
-      category: ['', Validators.required]
-    }));
-  }
+    addAdditionalField() {
+        this.additionalFields.push(
+            this.fb.group({
+                name: ['', Validators.required],
+                value: ['', Validators.required],
+                category: ['', Validators.required],
+            })
+        );
+    }
 
-  onSubmit() {
-    console.log('===> form', this.paymentForm.value)
-  }
+    onSubmit() {
+        console.log('===> form', this.paymentForm.value);
+    }
 }
