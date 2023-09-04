@@ -14,7 +14,7 @@ interface ISampleDataResponse {
 export class AppComponent {
   title = 'bulbaaccounting-front';
 
-  public sampleData: string = '';
+  public sampleData = '';
 
   protected subscriptions: Subscription = new Subscription();
 
