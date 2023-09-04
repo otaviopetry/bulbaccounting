@@ -2,7 +2,7 @@
   "name": "bulbaaccounting-front",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
-  "prefix": "rocky-pear",
+  "prefix": "bulba",
   "sourceRoot": "./apps/bulbaaccounting-front/src",
   "tags": [],
   "targets": {

@@ -17,7 +17,7 @@
           "error",
           {
             "type": "element",
-            "prefix": "rocky-pear",
+            "prefix": "bulba",
             "style": "kebab-case"
           }
         ]

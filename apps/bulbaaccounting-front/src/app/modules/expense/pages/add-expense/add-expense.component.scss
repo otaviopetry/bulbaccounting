@@ -1,3 +1,37 @@
 :host {
   display: block;
 }
+
+.add-expense-form {
+  display: flex;
+  justify-content: center;
+
+  form {
+    max-width: 100%;
+    width: 520px;
+    text-align: left;
+
+    fieldset {
+      border: 1px solid #eaeaea;
+      padding: 15px;
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+    }
+
+    input {
+      width: 100%;
+      border: 1px solid #eeeeee;
+    }
+
+    select {
+      width: 100%;
+    }
+
+    option:disabled {
+      color: #EAEAEA;
+    }
+  }
+}
