@@ -25,15 +25,15 @@
                 type="number"
                 id="totalAmount"
                 formControlName="totalAmount"
-                placeholder="Valor total da despesa"
+                placeholder="0.00"
             />
         </div>
         <div>
             <label for="paymentMethod">Método de Pagamento</label>
             <select id="paymentMethod" formControlName="paymentMethod">
                 <option value="0" disabled selected>Selecione um</option>
-                <option value="debit">Debit</option>
-                <option value="credit">Credit</option>
+                <option value="debit">Débito</option>
+                <option value="credit">Crédito</option>
             </select>
         </div>
         <div>
@@ -65,8 +65,8 @@
         <div class="add-expense-form__items">
             <h3>Items</h3>
             <div
-                formArrayName="additionalFields"
-                *ngFor="let field of additionalFields.controls; let i = index"
+                formArrayName="transactionItems"
+                *ngFor="let field of transactionItems.controls; let i = index"
             >
                 <div [formGroupName]="i" class="add-expense-form__items__item">
                     <div>
@@ -103,6 +103,14 @@
             >
                 +
             </button>
+        </div>
+        <div>
+            <label for="additionalInfo">Informações adicionais</label>
+            <textarea
+                id="additionalInfo"
+                formControlName="additionalInfo"
+                placeholder="Notas gerais sobre a compra"
+            ></textarea>
         </div>
         <button class="add-expense-form__submit" type="submit">
             Adicionar despesa

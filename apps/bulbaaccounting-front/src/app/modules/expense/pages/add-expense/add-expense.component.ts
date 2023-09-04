@@ -8,31 +8,36 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddExpenseComponent implements OnInit {
-    public paymentForm: FormGroup = this.fb.group({});
+    public paymentForm: FormGroup = this.formBuilder.group({});
 
-    constructor(private fb: FormBuilder) {}
+    constructor(
+        private formBuilder: FormBuilder
+    ) {
+        //
+    }
 
     ngOnInit() {
-        this.paymentForm = this.fb.group({
+        this.paymentForm = this.formBuilder.group({
             name: ['', Validators.required],
             date: ['', Validators.required],
-            totalAmount: [0.0, Validators.required],
+            totalAmount: ['', Validators.required],
             paymentMethod: ['0', Validators.required],
             paymentType: ['0', Validators.required],
             installments: [1],
             paymentSource: ['', Validators.required],
-            additionalFields: this.fb.array([]),
+            transactionItems: this.formBuilder.array([]),
+            additionalInfo: ['']
         });
         this.addAdditionalField();
     }
 
-    get additionalFields() {
-        return this.paymentForm.get('additionalFields') as FormArray;
+    get transactionItems() {
+        return this.paymentForm.get('transactionItems') as FormArray;
     }
 
     addAdditionalField() {
-        this.additionalFields.push(
-            this.fb.group({
+        this.transactionItems.push(
+            this.formBuilder.group({
                 name: ['', Validators.required],
                 value: ['', Validators.required],
                 category: ['', Validators.required],
