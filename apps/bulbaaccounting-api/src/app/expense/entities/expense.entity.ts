@@ -32,6 +32,8 @@ export class ExpenseTransaction {
   @Column({ nullable: true })
   notes: string;
 
-  @OneToMany(() => ExpenseItems, (expenseItems) => expenseItems.transaction)
+  @OneToMany(() => ExpenseItems, (expenseItems) => expenseItems.transaction, {
+    cascade: true,
+  })
   transactionItems: ExpenseItems[];
 }
