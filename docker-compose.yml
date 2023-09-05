@@ -1,0 +1,10 @@
+version: '3'
+services:
+  db:
+    build: .
+    environment:
+      POSTGRES_USER: otaviopetry
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_DB: test
+    ports:
+      - "5432:5432"

@@ -6,7 +6,14 @@ import { ExpenseTransaction } from './entities/expense.entity';
 import { ExpenseItems } from './entities/expense-items.entity';
 
 @Module({
+    imports: [
+        TypeOrmModule.forFeature([
+            ExpenseTransaction,
+            ExpenseItems
+        ])
+    ],
     controllers: [ExpenseController],
     providers: [ExpenseService],
 })
 export class ExpenseModule {}
+
