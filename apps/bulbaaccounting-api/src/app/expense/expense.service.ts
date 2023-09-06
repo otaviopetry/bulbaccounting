@@ -17,6 +17,11 @@ export class ExpenseService {
     async create(createExpenseDto: CreateExpenseDto) {
         const expense = this.expenseRepository.create(createExpenseDto);
 
+        expense.value = expense.value / 100;
+        expense.transactionItems.forEach((item) => {
+            item.value = item.value / 100;
+        })
+
         await this.expenseRepository.save(expense);
 
         return expense;

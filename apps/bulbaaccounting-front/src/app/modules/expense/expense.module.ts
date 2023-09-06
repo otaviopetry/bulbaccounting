@@ -5,6 +5,7 @@ import { ExpenseRoutingModule } from './expense.routing';
 import { ExpenseComponent } from './expense.component';
 import { AddExpenseComponent } from './pages/add-expense/add-expense.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ExpenseFormService } from './services/expense-form/expense-form.service';
 
 @NgModule({
   declarations: [
@@ -16,5 +17,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     ExpenseRoutingModule,
     ReactiveFormsModule,
   ],
+  providers: [
+    ExpenseFormService,
+  ]
 })
 export class ExpenseModule {}

@@ -1,39 +1,49 @@
 import {
-  Entity,
-  PrimaryGeneratedColumn,
-  Column,
-  OneToMany,
+    Entity,
+    PrimaryGeneratedColumn,
+    Column,
+    OneToMany,
+    Generated,
 } from 'typeorm';
 import { ExpenseItems } from './expense-items.entity';
 
+import { IExpense } from '@libs/shared-types/expense.interface';
+
 @Entity()
-export class ExpenseTransaction {
-  @PrimaryGeneratedColumn()
-  id: number;
+export class ExpenseTransaction implements IExpense {
+    @PrimaryGeneratedColumn('uuid')
+    id: string;
 
-  @Column()
-  name: string;
+    @Column()
+    @Generated('increment')
+    transactionNumber: number;
 
-  @Column('decimal')
-  value: number;
+    @Column()
+    name: string;
 
-  @Column('date')
-  date: Date;
+    @Column('decimal')
+    value: number;
 
-  @Column()
-  paymentMethod: string;
+    @Column('date')
+    date: Date;
 
-  @Column()
-  paymentType: string;
+    @Column()
+    paymentMethod: 'debit' | 'credit';
 
-  @Column()
-  paymentSource: string;
+    @Column()
+    paymentType: 'onePayment' | 'installments';
 
-  @Column({ nullable: true })
-  notes: string;
+    @Column('int')
+    installments: number;
 
-  @OneToMany(() => ExpenseItems, (expenseItems) => expenseItems.transaction, {
-    cascade: true,
-  })
-  transactionItems: ExpenseItems[];
+    @Column()
+    paymentSource: string;
+
+    @Column({ nullable: true })
+    notes: string;
+
+    @OneToMany(() => ExpenseItems, (expenseItems) => expenseItems.transaction, {
+        cascade: true,
+    })
+    transactionItems: ExpenseItems[];
 }

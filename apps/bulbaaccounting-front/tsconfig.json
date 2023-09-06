@@ -10,6 +10,7 @@
     "noFallthroughCasesInSwitch": true,
     "paths": {
       "@bulbaccounting-front/*": ["apps/bulbaaccounting-front/src/*"],
+      "@libs/*": ["libs/*"]
     }
   },
   "files": [],

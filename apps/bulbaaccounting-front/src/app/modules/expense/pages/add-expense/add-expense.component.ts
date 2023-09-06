@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ExpenseFormService } from '../../services/expense-form/expense-form.service';
 
 @Component({
     selector: 'bulba-add-expense',
@@ -8,10 +9,11 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddExpenseComponent implements OnInit {
-    public paymentForm: FormGroup = this.formBuilder.group({});
+    public paymentForm: FormGroup = this.formBuilder.group({ });
 
     constructor(
-        private formBuilder: FormBuilder
+        private formBuilder: FormBuilder,
+        private expenseFormService: ExpenseFormService,
     ) {
         //
     }
@@ -20,13 +22,13 @@ export class AddExpenseComponent implements OnInit {
         this.paymentForm = this.formBuilder.group({
             name: ['', Validators.required],
             date: ['', Validators.required],
-            totalAmount: ['', Validators.required],
+            value: ['', Validators.required],
             paymentMethod: ['0', Validators.required],
             paymentType: ['0', Validators.required],
             installments: [1],
             paymentSource: ['', Validators.required],
             transactionItems: this.formBuilder.array([]),
-            additionalInfo: ['']
+            notes: ['']
         });
         this.addAdditionalField();
     }
@@ -46,6 +48,6 @@ export class AddExpenseComponent implements OnInit {
     }
 
     onSubmit() {
-        console.log('===> form', this.paymentForm.value);
+        this.expenseFormService.addExpense(this.paymentForm.value);
     }
 }

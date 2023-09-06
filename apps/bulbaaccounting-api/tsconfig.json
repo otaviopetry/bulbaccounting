@@ -11,6 +11,10 @@
     }
   ],
   "compilerOptions": {
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "paths": {
+        "@bulbaccounting-api/*": ["apps/bulbaaccounting-api/src/*"],
+        "@libs/*": ["libs/*"]
+    }
   }
 }
