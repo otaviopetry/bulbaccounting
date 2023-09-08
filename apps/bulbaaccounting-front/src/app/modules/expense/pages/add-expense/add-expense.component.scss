@@ -1,68 +1,125 @@
 :host {
-  display: block;
+    display: block;
+    display: flex;
+    justify-content: center;
 }
 
 .add-expense-form {
-  display: flex;
-  justify-content: center;
-  padding: 0 15px;
+    max-width: 603px;
+    padding-bottom: 30px;
 
-  .page-title {
-    text-align: center;
-    font-size: 1.5rem;
-  }
-
-  form {
-    max-width: 100%;
-    width: 520px;
-    text-align: left;
+    display: grid;
+    grid-template-columns: repeat(9, 10.18%);
+    grid-auto-rows: auto;
+    gap: 1%;
 
     label {
-      display: block;
+        display: block;
     }
 
-    input, select, textarea {
-      margin-bottom: 1rem;
-      padding: 0.75rem;
-      width: 100%;
+    input,
+    select,
+    textarea {
+        padding: 0.75rem;
+        width: 100%;
     }
 
     input {
-      border: 1px solid #eeeeee;
+        border: 1px solid #eeeeee;
     }
 
     select {
-      height: 50px;
+        height: 50px;
     }
 
     option:disabled {
-      color: #EAEAEA;
-    }
-  }
-
-  &__items {
-    display: flex;
-    flex-direction: column;
-
-    &__item {
-      display: flex;
-      gap: 1rem;
+        color: #eaeaea;
     }
 
-    &__add-item {
-      border: 3px solid #976DC7;
-      border-radius: 0.75rem;
-      color: #976DC7;
-      font-size: 1.25rem;
-      padding: 0 0.6rem 0.25rem;
-      align-self: flex-end;
+    .is-invalid {
+        border: 1px solid red;
     }
-  }
 
-  &__submit {
-    background-color: #976DC7;
-    padding: 0 0.6rem 0.25rem;
-    color: white;
-    border-radius: 0.5rem;
-  }
+    &__title {
+        grid-column: span 9;
+
+        text-align: center;
+        font-size: 1.5rem;
+    }
+
+    &__name {
+        grid-column: span 6;
+    }
+
+    &__date {
+        grid-column: span 3;
+    }
+
+    &__payment-method,
+    &__payment-type {
+        grid-column: span 4;
+    }
+
+    &__installments {
+        grid-column: span 1;
+    }
+
+    &__payment-source {
+        grid-column: span 7;
+    }
+
+    &__value {
+        grid-column: span 2;
+    }
+
+    &__items {
+        grid-column: span 9;
+        display: flex;
+        flex-direction: column;
+
+        &__container {
+            background-color: #fff;
+        }
+
+        &__item {
+            display: flex;
+            border-bottom: 1px solid #a7a7a7;
+
+            div > input {
+                background-color: transparent;
+                border: 0;
+                outline: 0;
+            }
+
+            div:not(:last-child) > input {
+                border-right: 1px solid #dbdbdb;
+            }
+
+            &:nth-child(even) {
+                background-color: #efefef;
+            }
+        }
+
+        &__add-item {
+            border: 3px solid #976dc7;
+            border-radius: 0.75rem;
+            color: #976dc7;
+            font-size: 1.25rem;
+            padding: 0 0.6rem 0.25rem;
+            align-self: flex-end;
+            margin-top: 0.75rem;
+        }
+    }
+
+    &__notes {
+        grid-column: span 9;
+    }
+
+    &__submit {
+        grid-column: span 9;
+        background-color: #976dc7;
+        padding: 0 0.6rem 0.25rem;
+        color: white;
+        border-radius: 0.5rem;
+    }
 }

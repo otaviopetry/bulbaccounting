@@ -50,4 +50,9 @@ export class AddExpenseComponent implements OnInit {
     onSubmit() {
         this.expenseFormService.addExpense(this.paymentForm.value);
     }
+
+    isFieldInvalid(controlName: string) {
+        return this.paymentForm.get(controlName)?.invalid &&
+            this.paymentForm.get(controlName)?.touched;
+    }
 }
