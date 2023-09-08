@@ -41,7 +41,8 @@ export class AddExpenseComponent implements OnInit {
         this.transactionItems.push(
             this.formBuilder.group({
                 name: ['', Validators.required],
-                value: ['', Validators.required],
+                value: [null, Validators.required],
+                quantity: [null, Validators.required],
                 category: ['', Validators.required],
             })
         );

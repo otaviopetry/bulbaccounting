@@ -13,6 +13,9 @@ export class ExpenseItems implements ITransactionItem {
     @Column('decimal')
     value: number;
 
+    @Column('int')
+    quantity: number;
+
     @Column()
     category: string;
 
