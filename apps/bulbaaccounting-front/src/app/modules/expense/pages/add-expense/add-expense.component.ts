@@ -37,7 +37,7 @@ export class AddExpenseComponent implements OnInit {
         return this.paymentForm.get('transactionItems') as FormArray;
     }
 
-    addAdditionalField() {
+    public addAdditionalField() {
         this.transactionItems.push(
             this.formBuilder.group({
                 name: ['', Validators.required],
@@ -48,12 +48,16 @@ export class AddExpenseComponent implements OnInit {
         );
     }
 
-    onSubmit() {
+    public onSubmit() {
         this.expenseFormService.addExpense(this.paymentForm.value);
     }
 
-    isFieldInvalid(controlName: string) {
+    public isFieldInvalid(controlName: string) {
         return this.paymentForm.get(controlName)?.invalid &&
             this.paymentForm.get(controlName)?.touched;
+    }
+
+    public isFormValid() {
+        return this.paymentForm.valid;
     }
 }

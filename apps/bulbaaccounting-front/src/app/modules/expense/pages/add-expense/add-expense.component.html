@@ -128,7 +128,12 @@
             placeholder="Notas gerais sobre a compra"
         ></textarea>
     </div>
-    <button class="add-expense-form__submit" type="submit">
-        Adicionar despesa
+    <button
+        class="add-expense-form__submit"
+        type="submit"
+        [disabled]="!isFormValid()"
+        [class.invalid]="!isFormValid()"
+    >
+        Registrar despesa
     </button>
 </form>
