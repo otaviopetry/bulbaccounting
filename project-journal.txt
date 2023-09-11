@@ -1,0 +1,3 @@
+- Se o pagamento for à vista, precisamos desabilitar o input de parcelas
+- Calcular o total da despesa de acordo com os itens
+- Adicionar botão para remover linha dos itens adicionais

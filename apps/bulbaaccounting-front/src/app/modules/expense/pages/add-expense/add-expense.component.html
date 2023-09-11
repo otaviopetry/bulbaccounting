@@ -23,6 +23,7 @@
             id="date"
             formControlName="date"
             placeholder="Date"
+            [class.is-invalid]="isFieldInvalid('name')"
         />
     </div>
     <div class="add-expense-form__payment-method">
@@ -35,7 +36,7 @@
     </div>
     <div class="add-expense-form__payment-type">
         <label for="paymentType">Tipo de Pagamento</label>
-        <select id="paymentType" formControlName="paymentType">
+        <select id="paymentType" formControlName="paymentType" (change)="setInstallments()">
             <option value="0" disabled selected>Selecione um</option>
             <option value="onePayment">À vista</option>
             <option value="installments">Parcelado</option>
@@ -48,6 +49,9 @@
             id="installments"
             formControlName="installments"
             placeholder="Quantidade de parcelas"
+            value="1"
+            min="1"
+            [class.is-invalid]="isFieldInvalid('installments')"
         />
     </div>
     <div class="add-expense-form__payment-source">
@@ -57,15 +61,19 @@
             id="paymentSource"
             formControlName="paymentSource"
             placeholder="Qual cartão/conta?"
+            [class.is-invalid]="isFieldInvalid('paymentSource')"
         />
     </div>
     <div class="add-expense-form__value">
-        <label for="value">Total</label>
+        <label for="value">Total <small>(preenchido automaticamente)</small></label>
         <input
-            type="number"
+            type="text"
             id="value"
             formControlName="value"
-            placeholder="0.00"
+            [value]="getTotalAmount()"
+            tabindex="-1"
+            [disabled]="true"
+            readonly
         />
     </div>
     <div class="add-expense-form__items">
@@ -132,7 +140,7 @@
         class="add-expense-form__submit"
         type="submit"
         [disabled]="!isFormValid()"
-        [class.invalid]="!isFormValid()"
+        [class.disabled]="!isFormValid()"
     >
         Registrar despesa
     </button>

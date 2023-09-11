@@ -24,11 +24,18 @@ export class ExpenseFormService {
   }
 
   private prepareData(formData: IExpense) {
-    formData.value = formData.value * 100;
-    formData.transactionItems.forEach((item: ITransactionItem) => {
-      item.value = item.value * 100;
-    });
+    // transform values from expense and from transactionItems into cents before returning the object
+    const data = {
+        ...formData,
+        value: formData.value * 100,
+        transactionItems: formData.transactionItems.map((item: ITransactionItem) => {
+            return {
+                ...item,
+                value: item.value * 100,
+            }
+        }
+    )};
 
-    return formData;
+    return data;
   }
 }

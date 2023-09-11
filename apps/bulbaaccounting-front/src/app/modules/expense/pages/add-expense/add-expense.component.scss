@@ -18,6 +18,11 @@ $light-gray: #a7a7a7;
 
     label {
         display: block;
+        white-space: nowrap;
+
+        small {
+            font-size: 70%;
+        }
     }
 
     input,
@@ -68,11 +73,11 @@ $light-gray: #a7a7a7;
     }
 
     &__payment-source {
-        grid-column: span 7;
+        grid-column: span 6;
     }
 
     &__value {
-        grid-column: span 2;
+        grid-column: span 3;
     }
 
     &__items {
@@ -126,7 +131,7 @@ $light-gray: #a7a7a7;
         color: white;
         border-radius: 0.5rem;
 
-        &.invalid {
+        &.disabled {
             background-color: $light-gray;
             opacity: 0.5;
         }
