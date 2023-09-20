@@ -46,8 +46,8 @@ export class AddExpenseComponent implements OnInit {
         this.transactionItems.push(
             this.formBuilder.group({
                 name: ['', Validators.required],
-                value: [0, Validators.required],
-                quantity: [1, Validators.required],
+                value: [null, Validators.required],
+                quantity: [null, Validators.required],
                 category: ['', Validators.required],
             })
         );
@@ -74,8 +74,6 @@ export class AddExpenseComponent implements OnInit {
         for (const item of this.transactionItems.controls) {
             total += item.value.value * item.value.quantity;
         }
-
-        total = total / 100;
 
         return total.toFixed(2);
     }
