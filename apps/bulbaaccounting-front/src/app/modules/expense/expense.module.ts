@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, CurrencyPipe } from '@angular/common';
 
 import { ExpenseRoutingModule } from './expense.routing';
 import { ExpenseComponent } from './expense.component';
@@ -19,6 +19,7 @@ import { ExpenseFormService } from './services/expense-form/expense-form.service
   ],
   providers: [
     ExpenseFormService,
+    CurrencyPipe,
   ]
 })
 export class ExpenseModule {}

@@ -5,6 +5,7 @@ $light-gray: #a7a7a7;
     display: block;
     display: flex;
     justify-content: center;
+    padding-bottom: 2rem;
 }
 
 .add-expense-form {
@@ -25,19 +26,31 @@ $light-gray: #a7a7a7;
         }
     }
 
+    label,
+    legend {
+        margin-top: .5rem;
+        margin-bottom: .25rem;
+    }
+
     input,
     select,
     textarea {
-        padding: 0.75rem;
         width: 100%;
+    }
+
+    input,
+    select {
+        height: 42px;
+        width: 100%;
+        padding: 0 0.75rem;
+    }
+
+    textarea {
+        padding: 0.75rem;
     }
 
     input {
         border: 1px solid #eeeeee;
-    }
-
-    select {
-        height: 50px;
     }
 
     option:disabled {
@@ -73,11 +86,25 @@ $light-gray: #a7a7a7;
     }
 
     &__payment-source {
-        grid-column: span 6;
+        grid-column: span 9;
     }
 
     &__value {
-        grid-column: span 3;
+        grid-column: span 9;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+
+        label {
+            text-align: right;
+            margin-right: 10px;
+            line-height: 1;
+        }
+
+        > div {
+            background-color: white;
+            width: 80px
+        }
     }
 
     &__items {
@@ -87,6 +114,29 @@ $light-gray: #a7a7a7;
 
         &__container {
             background-color: #fff;
+        }
+
+        &__value {
+            position: relative;
+
+            input {
+                color: transparent;
+                z-index: 2;
+            }
+
+            span {
+                position: absolute;
+                top: 0;
+                left: 0;
+                display: block;
+                width: 99%;
+                height: 100%;
+                padding: 0.5rem 0.75rem;
+                background-color: white;
+                z-index: 1;
+                text-align: right;
+                color: #333;
+            }
         }
 
         &__item {
@@ -105,7 +155,7 @@ $light-gray: #a7a7a7;
             }
 
             &:nth-child(even) {
-                background-color: #efefef;
+                background-color: #f4f4f4;
             }
         }
 
@@ -122,6 +172,7 @@ $light-gray: #a7a7a7;
 
     &__notes {
         grid-column: span 9;
+        margin-top: -1.25rem;
     }
 
     &__submit {
@@ -130,6 +181,7 @@ $light-gray: #a7a7a7;
         padding: 0 0.6rem 0.25rem;
         color: white;
         border-radius: 0.5rem;
+        margin-top: 1.5rem;
 
         &.disabled {
             background-color: $light-gray;

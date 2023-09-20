@@ -64,61 +64,52 @@
             [class.is-invalid]="isFieldInvalid('paymentSource')"
         />
     </div>
-    <div class="add-expense-form__value">
-        <label for="value">Total <small>(preenchido automaticamente)</small></label>
-        <input
-            type="text"
-            id="value"
-            formControlName="value"
-            [value]="getTotalAmount()"
-            tabindex="-1"
-            [disabled]="true"
-            readonly
-        />
-    </div>
     <div class="add-expense-form__items">
-        <h3>Itens da despesa</h3>
-        <div
-            class="add-expense-form__items__container"
-            formArrayName="transactionItems"
-        >
-            <ng-container *ngFor="let field of transactionItems.controls; let i = index">
-                <div [formGroupName]="i" class="add-expense-form__items__item">
-                    <div>
-                        <input
-                            type="text"
-                            id="{{ 'additionalFieldName_' + i }}"
-                            formControlName="name"
-                            placeholder="Nome"
-                        />
+        <fieldset>
+            <legend>Itens da despesa</legend>
+            <div
+                class="add-expense-form__items__container"
+                formArrayName="transactionItems"
+            >
+                <ng-container *ngFor="let field of transactionItems.controls; let i = index">
+                    <div [formGroupName]="i" class="add-expense-form__items__item">
+                        <div>
+                            <input
+                                type="text"
+                                id="{{ 'additionalFieldName_' + i }}"
+                                formControlName="name"
+                                placeholder="Nome"
+                            />
+                        </div>
+                        <div class="add-expense-form__items__value">
+                            <input
+                                type="number"
+                                id="{{ 'additionalFieldValue_' + i }}"
+                                formControlName="value"
+                                placeholder="Valor"
+                            />
+                            <span>{{ getTransactionItemFormattedValue(i) }}</span>
+                        </div>
+                        <div>
+                            <input
+                                type="number"
+                                id="{{ 'additionalFieldQuantity_' + i }}"
+                                formControlName="quantity"
+                                placeholder="Quantidade"
+                            />
+                        </div>
+                        <div>
+                            <input
+                                type="text"
+                                id="{{ 'additionalFieldCategory_' + i }}"
+                                formControlName="category"
+                                placeholder="Categoria"
+                            />
+                        </div>
                     </div>
-                    <div>
-                        <input
-                            type="number"
-                            id="{{ 'additionalFieldValue_' + i }}"
-                            formControlName="value"
-                            placeholder="Valor"
-                        />
-                    </div>
-                    <div>
-                        <input
-                            type="number"
-                            id="{{ 'additionalFieldQuantity_' + i }}"
-                            formControlName="quantity"
-                            placeholder="Quantidade"
-                        />
-                    </div>
-                    <div>
-                        <input
-                            type="text"
-                            id="{{ 'additionalFieldCategory_' + i }}"
-                            formControlName="category"
-                            placeholder="Categoria"
-                        />
-                    </div>
-                </div>
-            </ng-container>
-        </div>
+                </ng-container>
+            </div>
+        </fieldset>
         <button
             type="button"
             (click)="addAdditionalField()"
@@ -136,12 +127,27 @@
             placeholder="Notas gerais sobre a compra"
         ></textarea>
     </div>
+    <div class="add-expense-form__value">
+        <label for="value">Total<br><small>(preenchido automaticamente)</small></label>
+        <div>
+            <input
+                type="text"
+                id="value"
+                formControlName="value"
+                [value]="getTotalAmount()"
+                tabindex="-1"
+                readonly
+            />
+        </div>
+    </div>
     <button
         class="add-expense-form__submit"
         type="submit"
+    >
+    <!--
         [disabled]="!isFormValid()"
         [class.disabled]="!isFormValid()"
-    >
+    -->
         Registrar despesa
     </button>
 </form>
