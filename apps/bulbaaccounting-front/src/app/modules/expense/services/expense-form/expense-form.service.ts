@@ -15,26 +15,31 @@ export class ExpenseFormService {
 
         console.log('===> prepared data', data);
 
-        // return this.httpClient.post('http://localhost:3000/api/expense', data).subscribe({
-        //     next: (response) => {
-        //         console.log('===> response', response);
-        //     }
-        // });
+        return this.httpClient.post('http://localhost:3000/api/expense', data).subscribe({
+            next: (response) => {
+                console.log('===> response', response);
+            }
+        });
     }
 
     private prepareData(formData: IExpense) {
+        const formattedTransactionItems = formData.transactionItems.map(
+            (item: ITransactionItem) => {
+                return {
+                    ...item,
+                    value: item.value * 100,
+                };
+            }
+        );
+        const total = formattedTransactionItems.reduce(
+            (acc, item) => acc + item.value * item.quantity,
+            0
+        );
         // transform values from expense and from transactionItems into cents before returning the object
         const data = {
             ...formData,
-            value: formData.value * 100,
-            transactionItems: formData.transactionItems.map(
-                (item: ITransactionItem) => {
-                    return {
-                        ...item,
-                        value: item.value * 100,
-                    };
-                }
-            ),
+            transactionItems: formattedTransactionItems,
+            value: total,
         };
 
         return data;
